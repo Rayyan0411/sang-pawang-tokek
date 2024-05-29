@@ -1,0 +1,31 @@
+import discord
+from discord.ext import commands
+from botlogic import pass_gen
+import random, os
+intents = discord.Intents.default()
+intents.message_content = True
+bot = commands.Bot(command_prefix='$', intents=intents)
+@bot.event
+async def on_ready():
+    print(f'We have logged in as {bot.user}')
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f'Hi! I am a bot {bot.user}!')
+
+daur_ulang = ["kertas","karton","plastik",
+              "kaca","kaleng alumunium","logam",
+              "botol plastik","pakaian bekas"]
+
+@bot.command()
+async def cek_sampah(ctx)
+    await ctx.send('apa sampah yang mau kamu periksa?')
+    message = await bot.wait_for("message", check=lambda m: m.author == ctx.author and m.channel == ctx.channel)
+    message = str(message.content)
+
+    #proses pemeriksaan
+    if message.lower() in daur_ulang:
+        await ctx.send('lifestyle.kompas.com › read › 2022/03/21Makin Ramah Lingkungan, 5 Langkah Mudah Mengelola Sampah di Rumah')
+        await ctx send('ISI LINK ARTIKEL/VT/YOUTUBE DLL!!')
+    else:
+        await ctx.send('kumparan.com › tips-dan-trik › 6-cara-pengelolaan6 Cara Pengelolaan Sampah yang Baik dan Ramah Lingkungan')
+        await ctx.send('kasih artikle terkait!')
